@@ -1,0 +1,13 @@
+# Extra dependencies for the additional experiments in experiments/.
+# Install on top of the core requirements (../requirements.txt).
+numpy>=1.21
+pandas>=1.3
+scipy>=1.7
+scikit-learn>=1.0
+matplotlib>=3.5
+seaborn>=0.12
+umap-learn>=0.5
+lifelines>=0.27       # survival_analysis: Kaplan-Meier, log-rank
+statsmodels>=0.13     # cell_level_stats: linear mixed-effects models, FDR
+shap>=0.41            # shap_analysis: SHAP feature attribution
+torch>=1.12           # gmm_responsibility / latent_space: load .pt tensors
