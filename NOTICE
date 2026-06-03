@@ -17,11 +17,12 @@ Authorship
 Dr Olga Fourkioti  (https://github.com/olgarithmics)
   * Core Pheno-MYCN model and training/inference pipeline — author.
   * SHAP analysis and GMM-responsibility profiling experiments — author.
+  * Whole-slide visualization scripts — author.
 
 Dr Binghao Chai  (https://bhchai.com/, https://github.com/cbhindex)
   * Additional experiments (survival analysis, latent-space characterisation,
     cell-level statistics) — author.
-  * Core pipeline and the SHAP / GMM-responsibility experiments — code review and refactoring.
+  * Core Pheno-MYCN model and training/inference pipeline — code review and refactoring.
 
 --------------------------------------------------------------------------------
 Third-party components and their provenance
