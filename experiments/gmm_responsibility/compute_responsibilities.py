@@ -1,5 +1,6 @@
 # Pheno-MYCN — additional experiments.
-# Author:  Dr Binghao Chai  (https://bhchai.com/, https://github.com/cbhindex)
+# Author:                     Dr Olga Fourkioti  (https://github.com/olgarithmics)
+# Code review & refactoring:  Dr Binghao Chai    (https://bhchai.com/, https://github.com/cbhindex)
 # License: GPL-3.0 (see the LICENSE file at the repository root).
 #
 """
