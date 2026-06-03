@@ -10,8 +10,8 @@ readme = "README.md"
 requires-python = ">=3.8"
 license = { text = "GPL-3.0-only" }
 authors = [
-    { name = "Dr Olga Fourkioti" },
     { name = "Dr Binghao Chai" },
+    { name = "Dr Olga Fourkioti" },
 ]
 keywords = [
     "neuroblastoma", "MYCN", "digital pathology",
@@ -40,9 +40,13 @@ train = [
     "nystrom-attention>=0.0.9",
 ]
 
+[project.scripts]
+pheno-mycn = "pheno_mycn.cli:main"
+
 [project.urls]
-"Olga Fourkioti" = "https://github.com/olgarithmics"
-"Binghao Chai" = "https://github.com/cbhindex"
+"Binghao Chai" = "https://bhchai.com/"
+"Binghao Chai (GitHub)" = "https://github.com/cbhindex"
+"Olga Fourkioti (GitHub)" = "https://github.com/olgarithmics"
 
 [tool.setuptools]
 packages = [

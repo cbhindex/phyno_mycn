@@ -35,9 +35,13 @@ by tiling a colour-normalised H&E WSI and encoding each tile with the
 # 1. install the package (editable). The pretrained checkpoint is already in the repo.
 pip install -e .
 
-# 2. predict on one slide's tile embeddings
-python plug_and_play/predict.py --features /path/to/SLIDE_uni.pt
+# 2. predict on one slide's tile embeddings (installs the `pheno-mycn` command)
+pheno-mycn predict --features /path/to/SLIDE_uni.pt --output SLIDE_phenotypes.csv
 ```
+
+Equivalent forms: `python -m pheno_mycn predict ...`, or the legacy
+`python plug_and_play/predict.py --features ...` (kept for backwards
+compatibility — it forwards to `pheno-mycn predict`).
 
 ## Python API
 

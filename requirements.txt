@@ -17,5 +17,6 @@ scikit-learn>=1.0
 pyyaml>=5.4
 addict>=2.4
 
-# --- The plug-and-play inference tool only needs `torch` + `numpy` + `pyyaml`.
-#     The packages above are required for (re)training and the Lightning pipeline.
+# --- The plug-and-play inference tool only needs `torch` + `numpy` + `pyyaml` +
+#     `addict` (i.e. `pip install -e .`). The packages above are required for
+#     (re)training and the full Lightning pipeline.

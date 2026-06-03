@@ -1,5 +1,5 @@
 # Pheno-MYCN — additional experiments.
-# Author:  Dr Binghao Chai  (https://github.com/cbhindex)
+# Author:  Dr Binghao Chai  (https://bhchai.com/, https://github.com/cbhindex)
 # License: GPL-3.0 (see the LICENSE file at the repository root).
 #
 """Shared matplotlib style — Arial-like sans-serif for all survival panels."""

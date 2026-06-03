@@ -29,8 +29,8 @@ AUC ≈ 0.90).
 ## Highlights
 
 - 🧩 **Plug-and-play predictor** — run the pretrained model on a slide's tile
-  embeddings in a few lines; no training, no PyTorch Lightning at inference.
-  See [`plug_and_play/`](plug_and_play/).
+  embeddings via the `pheno-mycn` command line **or** the Python API; no training,
+  no PyTorch Lightning at inference. See [`plug_and_play/`](plug_and_play/).
 - 🔬 **Interpretable phenotypes** — per-tile soft GMM responsibilities + hard
   component labels (Components 1–6), not just a slide-level score.
 - 🏋️ **Full training pipeline** — reproduce the model and the CLAM-SB / TransMIL /
@@ -71,22 +71,71 @@ data/              Data-format documentation + a synthetic example (no patient d
    all tiles to produce per-tile soft *responsibilities* and hard component
    labels — the interpretable phenotype space analysed in the paper.
 
-## Installation
+## Getting started
+
+### 1. Install
+
+Requirements: Python ≥ 3.8 and PyTorch. The pretrained checkpoint (~7 MB) is
+committed directly in the repo — nothing extra to fetch.
 
 ```bash
 git clone <this-repo> && cd <this-repo>
-# the pretrained checkpoint (~7 MB) is committed directly in the repo — nothing extra to fetch
 
-# core package + Lightning-free inference
+# (recommended) an isolated environment
+conda create -n pheno_mycn python=3.10 -y
+conda activate pheno_mycn
+
+# install the package + run the pretrained model
 pip install -e .
-
-# full pipeline (training, baselines, metrics)
-pip install -e ".[train]"      # or: pip install -r requirements.txt
-# or the all-in-one conda env (incl. visualization + experiments)
-conda env create -f environment.yml
 ```
 
-## Quick start — plug-and-play prediction
+`pip install -e .` pulls only the **minimal** runtime dependencies — `torch`,
+`numpy`, `pyyaml`, `addict` — which is all you need for prediction.
+
+For GPU acceleration, install the PyTorch build that matches **your** CUDA driver
+**before** `pip install -e .`, using the selector at https://pytorch.org. For
+example, on a CUDA 12.1 driver:
+
+```bash
+pip install torch --index-url https://download.pytorch.org/whl/cu121
+pip install -e .
+```
+
+Pick the `cuXXX` channel for your driver (`nvidia-smi` shows the maximum CUDA
+version it supports). The model then uses the GPU automatically — verify with
+`python -c "import torch; print(torch.cuda.is_available())"`. (A bare
+`pip install -e .` also works, but may fetch a CUDA build newer than your driver
+supports, in which case CUDA falls back to unavailable.)
+
+For the **full pipeline** (training, baselines, metrics) add the extras, or use
+the all-in-one conda environment that also covers visualization and experiments:
+
+```bash
+pip install -e ".[train]"          # or: pip install -r requirements.txt
+conda env create -f environment.yml   # all-in-one alternative
+```
+
+### 2. Predict — command line
+
+Installing the package adds a `pheno-mycn` command:
+
+```bash
+# slide-level MYCN prediction + per-tile phenotype assignment
+pheno-mycn predict --features SLIDE_uni.pt
+
+# also write the per-tile responsibilities / attention to CSV
+pheno-mycn predict --features SLIDE_uni.pt --output SLIDE_phenotypes.csv
+
+pheno-mycn --version
+```
+
+`--features` is one slide's UNI tile embeddings (`[n_tiles, 1024]`, a `.pt` or
+`.npy` file). The GPU is used automatically when available; pass
+`--device cuda` or `--device cpu` to choose explicitly. `pheno-mycn predict
+--help` lists all options. The same command is also available as
+`python -m pheno_mycn predict ...`.
+
+### 3. Predict — Python
 
 ```python
 import torch
@@ -100,13 +149,7 @@ print(out["mycn_probability"])   # P(MYCN-amplified)
 print(out["hard_components"])    # per-tile phenotype, 1-indexed (Components 1..6)
 ```
 
-Or from the command line:
-
-```bash
-python plug_and_play/predict.py --features SLIDE_uni.pt --output SLIDE_phenotypes.csv
-```
-
-See [`plug_and_play/README.md`](plug_and_play/README.md) for details.
+See [`plug_and_play/README.md`](plug_and_play/README.md) for the full output schema.
 
 ## Training
 
@@ -142,10 +185,11 @@ holds a synthetic split illustrating the layout.
 
 ## Authors
 
+- **Dr Binghao Chai** — additional experiments; code review and refactoring of
+  the core Pheno-MYCN pipeline.
+  [bhchai.com](https://bhchai.com/) · [github.com/cbhindex](https://github.com/cbhindex)
 - **Dr Olga Fourkioti** — core Pheno-MYCN model and training/inference pipeline.
   [github.com/olgarithmics](https://github.com/olgarithmics)
-- **Dr Binghao Chai** — additional experiments; code review and refactoring of
-  the core pipeline. [github.com/cbhindex](https://github.com/cbhindex)
 
 ## License & attribution
 
@@ -154,11 +198,3 @@ GPL-3.0 is required because the attention-MIL backbone and the WSI utilities
 derive from [CLAM](https://github.com/mahmoodlab/CLAM) (GPL-3.0). Third-party
 components (CLAM, TransMIL, DSMIL, timm, nystrom-attention, UNI, HoverNet) and
 their licenses are credited in [`NOTICE`](NOTICE).
-
-## Citation
-
-If you use Pheno-MYCN, please cite the manuscript and this repository (see
-[`CITATION.cff`](CITATION.cff)):
-
-> Fourkioti O, Chai B. *Pheno-MYCN: interpretable histological phenotypes
-> associated with MYCN amplification in paediatric neuroblastoma.*

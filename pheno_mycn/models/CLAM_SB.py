@@ -18,8 +18,8 @@ probabilities, the attention scores, the per-tile GMM responsibilities
 Part of Pheno-MYCN: interpretable histological phenotype discovery associated
 with MYCN amplification in paediatric neuroblastoma.
 
-Author:                  Dr Olga Fourkioti  (https://github.com/olgarithmics)
-Code review & refactor:  Dr Binghao Chai    (https://github.com/cbhindex)
+Code review & refactoring:  Dr Binghao Chai     (https://bhchai.com/, https://github.com/cbhindex)
+Author:                     Dr Olga Fourkioti   (https://github.com/olgarithmics)
 
 License: GPL-3.0 (see the LICENSE file at the repository root).
 Portions adapted from CLAM (Mahmood Lab, GPL-3.0).
