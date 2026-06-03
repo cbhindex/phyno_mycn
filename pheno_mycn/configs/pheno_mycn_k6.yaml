@@ -1,0 +1,46 @@
+# Pheno-MYCN (CLAM-SB backbone + auxiliary GMM phenotype branch), K = 6.
+# This is the configuration used for the main results in the manuscript.
+#
+# Update the two paths under `Data` to point at your own data:
+#   data_dir  : directory of per-slide UNI tile-embedding tensors (<slide_id>.pt)
+#   label_dir : directory containing the cross-validation split CSVs
+#               (foldN.csv); see data/README.md for the expected schema.
+General:
+    comment:
+    seed: 12321
+    fp16: False
+    precision: 32
+    multi_gpu_mode: dp
+    gpus: [0]
+    epochs: &epoch 12
+    grad_acc: 2
+    frozen_bn: False
+    patience: 10
+    server: train          # 'train' to fit, 'test' to evaluate checkpoints
+    log_path: neuro_logs/
+Data:
+    dataset_name: camel_data
+    data_shuffle: False
+    data_dir: /path/to/uni_feats/pt_files/      # <slide_id>.pt tile embeddings
+    label_dir: /path/to/cv_splits/              # contains fold0.csv ... foldN.csv
+    fold: 0
+    nfold: 10
+    train_dataloader:
+        batch_size: 1
+        num_workers: 8
+    test_dataloader:
+        batch_size: 1
+        num_workers: 8
+Model:
+    name: CLAM_SB          # Pheno-MYCN = CLAM-SB backbone + GMM branch
+    n_classes: 2
+    l: 6                   # number of GMM components K (K=6 in the manuscript)
+Optimizer:
+    opt: Lookahead_radam
+    lr: 0.0002
+    opt_eps: null
+    opt_betas: null
+    momentum: null
+    weight_decay: 0.00001
+Loss:
+    base_loss: CrossEntropyLoss
