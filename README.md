@@ -18,8 +18,8 @@ karyorrhexis, neuropil-rich / ganglionic tissue, necrosis, haemorrhage, and
 technical artefact).
 
 On a cohort of 189 H&E slides, Pheno-MYCN outperformed CLAM-SB and TransMIL
-baselines (mean across 10 cross-validation folds: accuracy ≈ 0.89, F1 ≈ 0.87,
-AUC ≈ 0.90).
+baselines across ten-fold cross-validation (quantitative results are reported in
+the manuscript).
 
 > **Research use only.** This is a research artefact for H&E neuroblastoma WSIs,
 > not a diagnostic device.
@@ -75,8 +75,12 @@ data/              Data-format documentation + a synthetic example (no patient d
 
 ### 1. Install
 
-Requirements: Python ≥ 3.8 and PyTorch. The pretrained checkpoint (~7 MB) is
-committed directly in the repo — nothing extra to fetch.
+Requirements: Python ≥ 3.8 and PyTorch.
+
+> **Pretrained weights (pre-publication):** the trained model-weight files are
+> withheld until the manuscript is published. The code is complete; the
+> `pheno-mycn` CLI and `PhenoMYCNPredictor` work as soon as a checkpoint is
+> present under `plug_and_play/weights/`.
 
 ```bash
 git clone <this-repo> && cd <this-repo>
@@ -185,11 +189,11 @@ holds a synthetic split illustrating the layout.
 
 ## Authors
 
+- **Dr Olga Fourkioti** — core Pheno-MYCN model and training/inference pipeline.
+  [github.com/olgarithmics](https://github.com/olgarithmics)
 - **Dr Binghao Chai** — additional experiments; code review and refactoring of
   the core Pheno-MYCN pipeline.
   [bhchai.com](https://bhchai.com/) · [github.com/cbhindex](https://github.com/cbhindex)
-- **Dr Olga Fourkioti** — core Pheno-MYCN model and training/inference pipeline.
-  [github.com/olgarithmics](https://github.com/olgarithmics)
 
 ## License & attribution
 

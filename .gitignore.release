@@ -1,0 +1,59 @@
+# =============================================================================
+# .gitignore — RELEASE / POST-PUBLICATION variant
+#
+# Activate at publication time:
+#       cp .gitignore.release .gitignore
+#       git add -f plug_and_play/weights/        # then commit
+#
+# This re-includes the bundled plug-and-play checkpoint and its per-fold metrics
+# so they ship with the public release.
+# =============================================================================
+
+# Byte-compiled / optimized / cache
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+
+# Python packaging / editable-install artifacts
+*.egg-info/
+*.egg
+.eggs/
+build/
+dist/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+
+# Logs and lightning run dirs
+*.log
+neuro_logs/
+lightning_logs/
+wandb/
+
+# Large data and derived artefacts (NOT distributed in this repo)
+# Tile embeddings, whole-slide images, and per-slide inference dumps are
+# patient-derived and/or too large for version control.
+data/wsi_embeddings/
+data/**/*.pt
+data/**/*.h5
+data/**/*.svs
+data/**/*.ndpi
+results/
+*.npy
+
+# Model checkpoints are excluded by default, except the single representative
+# plug-and-play checkpoint published with the paper, which is re-included here.
+*.ckpt
+*.pth
+*.pt
+!plug_and_play/weights/*.ckpt

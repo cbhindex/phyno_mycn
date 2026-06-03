@@ -1,3 +1,13 @@
+# =============================================================================
+# .gitignore — PRE-PUBLICATION variant (ACTIVE)
+#
+# The trained model weights and their per-fold metrics are WITHHELD from the
+# repository until the manuscript is published. After publication, swap in the
+# release variant and stage the weights (see PUBLICATION.md):
+#       cp .gitignore.release .gitignore
+#       git add -f plug_and_play/weights/        # then commit
+# =============================================================================
+
 # Byte-compiled / optimized / cache
 __pycache__/
 *.py[cod]
@@ -40,10 +50,13 @@ data/**/*.ndpi
 results/
 *.npy
 
-# Model checkpoints are excluded by default. The single representative
-# plug-and-play checkpoint under plug_and_play/weights/ is tracked via Git LFS
-# (see .gitattributes) and is therefore explicitly re-included below.
+# Model checkpoints and saved tensors.
 *.ckpt
 *.pth
 *.pt
-!plug_and_play/weights/*.ckpt
+
+# --- Confidential until publication ---
+# The trained plug-and-play checkpoint and its per-fold metrics are withheld for
+# now. (Deliberately NOT re-included; the release variant re-includes them.)
+plug_and_play/weights/*.ckpt
+plug_and_play/weights/*.csv

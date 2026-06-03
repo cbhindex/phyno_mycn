@@ -10,18 +10,14 @@
   The network weights live under the `model.` prefix; the plug-and-play loader
   ([`pheno_mycn/inference.py`](../../pheno_mycn/inference.py)) strips this prefix
   and loads them into a fresh `CLAM_SB`, so no Lightning runtime is required.
-- **Committed directly** in the repository (~7 MB); no Git LFS required.
+- **Availability:** released with the publication. Until then the weight file and
+  its per-fold metrics are withheld from the repository (see the pre-publication
+  `.gitignore` and `../../PUBLICATION.md`).
 
 ### Held-out test metrics (this fold)
 
-See `fold9_result.csv`:
-
-| accuracy | F1 | precision | recall | AUC |
-|----------|------|-----------|--------|------|
-| 0.778 | 0.750 | 0.750 | 0.750 | 0.722 |
-
-These are single-fold numbers. The manuscript reports mean ± SD across all ten
-folds (Pheno-MYCN: AUC 0.90 ± 0.12, accuracy 0.89 ± 0.13).
+Per-fold and cross-validation metrics are reported in the manuscript and will be
+included here (as `fold9_result.csv`) at publication.
 
 ### Provenance
 

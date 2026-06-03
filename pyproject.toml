@@ -10,8 +10,8 @@ readme = "README.md"
 requires-python = ">=3.8"
 license = { text = "GPL-3.0-only" }
 authors = [
-    { name = "Dr Binghao Chai" },
     { name = "Dr Olga Fourkioti" },
+    { name = "Dr Binghao Chai" },
 ]
 keywords = [
     "neuroblastoma", "MYCN", "digital pathology",
@@ -44,9 +44,9 @@ train = [
 pheno-mycn = "pheno_mycn.cli:main"
 
 [project.urls]
+"Olga Fourkioti (GitHub)" = "https://github.com/olgarithmics"
 "Binghao Chai" = "https://bhchai.com/"
 "Binghao Chai (GitHub)" = "https://github.com/cbhindex"
-"Olga Fourkioti (GitHub)" = "https://github.com/olgarithmics"
 
 [tool.setuptools]
 packages = [
